@@ -1,13 +1,13 @@
-package com.example.mediaviewer.ui.notifications
+package com.example.mediaviewer.ui.images
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class ImagesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is Images Fragment"
     }
     val text: LiveData<String> = _text
 }
