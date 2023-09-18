@@ -1,6 +1,7 @@
 package com.example.mediaviewer.ui.images
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mediaviewer.databinding.FragmentImagesBinding
 
 class ImagesFragment : Fragment() {
-
+    private final val TAG = "ImagesFragment"
     private var _binding: FragmentImagesBinding? = null
-
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,13 +22,13 @@ class ImagesFragment : Fragment() {
             ViewModelProvider(this).get(ImagesViewModel::class.java)
 
         _binding = FragmentImagesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding!!.imagesFragment = this
 
-        val textView: TextView = binding.textHome
-        imagesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return _binding!!.root
+    }
+
+    fun onScreenTouched(view: View){
+        Log.i(TAG, "onScreenTouched: clicked")
     }
 
     override fun onDestroyView() {

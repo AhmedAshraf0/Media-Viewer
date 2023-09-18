@@ -2,4 +2,6 @@
     <string name="app_name">Media Viewer</string>
     <string name="images">Images</string>
     <string name="videos">Videos</string>
+    <string name="images_message">Tap anywhere to load your photos</string>
+    <string name="videos_message">Tap anywhere to load your videos</string>
 </resources>

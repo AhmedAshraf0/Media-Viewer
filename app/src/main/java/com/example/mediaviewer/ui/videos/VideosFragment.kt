@@ -1,6 +1,7 @@
 package com.example.mediaviewer.ui.videos
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mediaviewer.databinding.FragmentVideosBinding
 
 class VideosFragment : Fragment() {
-
+    private final val TAG = "VideosFragment"
     private var _binding: FragmentVideosBinding? = null
-
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,13 +23,13 @@ class VideosFragment : Fragment() {
             ViewModelProvider(this).get(VideosViewModel::class.java)
 
         _binding = FragmentVideosBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding!!.videosFragment = this
 
-        val textView: TextView = binding.textDashboard
-        videosViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return _binding!!.root
+    }
+
+    fun onScreenTouched(view: View){
+        Log.i(TAG, "onScreenTouched: clicked")
     }
 
     override fun onDestroyView() {
