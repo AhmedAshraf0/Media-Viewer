@@ -6,14 +6,14 @@
     <data>
         <variable
             name="videosFragment"
-            type="com.example.mediaviewer.ui.videos.VideosFragment" />
+            type="com.example.mediaviewer.features.videos.VideosFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/videosFragmentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.videos.VideosFragment"
+        tools:context=".features.videos.VideosFragment"
         android:onClick="@{videosFragment::onScreenTouched}">
 
         <ImageView

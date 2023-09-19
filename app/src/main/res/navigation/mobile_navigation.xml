@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_images"
-        android:name="com.example.mediaviewer.ui.images.ImagesFragment"
+        android:name="com.example.mediaviewer.features.images.view.ImagesFragment"
         android:label="@string/images"
         tools:layout="@layout/fragment_images" />
 
     <fragment
         android:id="@+id/navigation_videos"
-        android:name="com.example.mediaviewer.ui.videos.VideosFragment"
+        android:name="com.example.mediaviewer.features.videos.VideosFragment"
         android:label="@string/videos"
         tools:layout="@layout/fragment_videos" />
 </navigation>

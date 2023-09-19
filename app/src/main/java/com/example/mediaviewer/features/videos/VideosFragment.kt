@@ -1,11 +1,10 @@
-package com.example.mediaviewer.ui.videos
+package com.example.mediaviewer.features.videos
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mediaviewer.databinding.FragmentVideosBinding

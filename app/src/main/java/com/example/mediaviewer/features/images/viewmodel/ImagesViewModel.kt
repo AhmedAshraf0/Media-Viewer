@@ -1,4 +1,4 @@
-package com.example.mediaviewer.ui.images.viewmodel
+package com.example.mediaviewer.features.images.viewmodel
 
 import android.content.ContentUris
 import android.content.Context
@@ -9,24 +9,17 @@ import androidx.lifecycle.ViewModel
 import com.example.mediaviewer.models.Image
 
 class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
-    private final val TAG = "ImagesViewModel"
-    val imagesList = mutableListOf<Image>()
+    private val TAG = "ImagesViewModel"
+    private val imagesList = mutableListOf<Image>()
 
-    fun getLocalImages(){
-        //logic
+    //TODO("ADD COROUTINES")
+    fun getLocalImages(
+        projection: Array<String>,
+        selection: String,
+        selectionArgs: Array<String>,
+        sortOrder: String
+    ): MutableList<Image> {
         var ctr = 0
-
-        val projection = arrayOf(
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DISPLAY_NAME,
-            MediaStore.Images.Media.TITLE,
-            MediaStore.Images.Media.DATE_TAKEN,
-            MediaStore.Images.Media.SIZE
-        )
-        val selection = "${MediaStore.Images.Media.SIZE} >= ?"
-        val selectionArgs = arrayOf("1")
-        val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
-
 
         applicationContext.contentResolver.query(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -55,14 +48,13 @@ class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
                 val contentUri: Uri =
                     ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
 
-                imagesList += Image(contentUri,name,title,date,size)
+                imagesList += Image(contentUri, name, title, date, size)
 
                 Log.i(TAG, "From MediaStore")
             }
             Log.i(TAG, "After MediaStore While loop: ctr = $ctr")
-
-
-            //return true
+            //call another function to display photos in rv
         }
+        return imagesList
     }
 }

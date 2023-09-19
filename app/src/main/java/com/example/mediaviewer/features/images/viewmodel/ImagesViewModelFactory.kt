@@ -1,4 +1,4 @@
-package com.example.mediaviewer.ui.images.viewmodel
+package com.example.mediaviewer.features.images.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

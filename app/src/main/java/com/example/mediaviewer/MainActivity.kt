@@ -46,13 +46,4 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "onStart: ")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "onResume: ")
-    }
 }
