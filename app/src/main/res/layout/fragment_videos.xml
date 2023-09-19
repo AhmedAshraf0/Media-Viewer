@@ -6,14 +6,14 @@
     <data>
         <variable
             name="videosFragment"
-            type="com.example.mediaviewer.features.videos.VideosFragment" />
+            type="com.example.mediaviewer.features.videos.view.VideosFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/videosFragmentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.videos.VideosFragment"
+        tools:context=".features.videos.view.VideosFragment"
         android:onClick="@{videosFragment::onScreenTouched}">
 
         <ImageView
@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/userMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/videos_message"
@@ -37,5 +38,17 @@
             app:layout_constraintTop_toBottomOf="@+id/imagesIcon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videos_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

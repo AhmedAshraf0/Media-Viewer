@@ -12,12 +12,6 @@ import com.example.mediaviewer.models.Image
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
     private val TAG = "ImagesAdapter"
     var images = mutableListOf<Image>()
-/*        get() = field
-        set(value) {
-            Log.i(TAG, "updateImages: just received images ${images.size}")
-            field = value
-            notifyDataSetChanged()
-        }*/
 
     inner class ViewHolder(val cardImageBinding: CardImageBinding) :
         RecyclerView.ViewHolder(cardImageBinding.root)

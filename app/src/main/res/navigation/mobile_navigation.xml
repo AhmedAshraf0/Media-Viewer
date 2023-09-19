@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_videos"
-        android:name="com.example.mediaviewer.features.videos.VideosFragment"
+        android:name="com.example.mediaviewer.features.videos.view.VideosFragment"
         android:label="@string/videos"
         tools:layout="@layout/fragment_videos" />
 </navigation>
