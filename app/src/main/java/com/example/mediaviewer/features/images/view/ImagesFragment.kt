@@ -13,10 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mediaviewer.databinding.FragmentImagesBinding
 import com.example.mediaviewer.features.images.viewmodel.ImagesViewModel
 import com.example.mediaviewer.features.images.viewmodel.ImagesViewModelFactory
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class ImagesFragment : Fragment() {
     private val TAG = "ImagesFragment"
@@ -45,19 +48,20 @@ class ImagesFragment : Fragment() {
     ) { isGranted: Boolean ->
         if (isGranted) {
             Log.i(TAG, "requestPermissionLauncher: granted");
+
             updateUI(true)
-            imagesAdapter.updateImages(imagesViewModel.getLocalImages(
+            imagesViewModel.getLocalImages(
                 projection,
                 selection,
                 selectionArgs,
                 sortOrder
-            ))
-//            imagesAdapter.images = imagesViewModel.getLocalImages()
+            )
         } else {
             Log.i(TAG, "requestPermissionLauncher: not granted");
             updateUI(false)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,14 +69,22 @@ class ImagesFragment : Fragment() {
     ): View {
         imagesViewModelFactory = ImagesViewModelFactory(requireActivity().applicationContext)
 
-        imagesViewModel = ViewModelProvider(this,imagesViewModelFactory).get(ImagesViewModel::class.java)
+        imagesViewModel =
+            ViewModelProvider(this, imagesViewModelFactory).get(ImagesViewModel::class.java)
 
         _binding = FragmentImagesBinding.inflate(inflater, container, false)
         _binding!!.imagesFragment = this
 
-        _binding?.imagesRecyclerView?.layoutManager = GridLayoutManager(requireContext(),2)
+        _binding?.imagesRecyclerView?.layoutManager = GridLayoutManager(requireContext(), 2)
         imagesAdapter = ImagesAdapter()
         _binding?.imagesRecyclerView?.adapter = imagesAdapter
+
+
+        imagesViewModel.imagesList.observe(viewLifecycleOwner){
+            Log.i(TAG, "received from livedata: ")
+            imagesAdapter.updateImages(it)
+            _binding?.progressBar?.visibility = View.GONE
+        }
 
         return _binding!!.root
     }
@@ -81,14 +93,15 @@ class ImagesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         requestPermissions(isCalledOnce, false)
     }
-    fun onScreenTouched(view: View){
+
+    fun onScreenTouched(view: View) {
         requestPermissions(isCalledOnce, true)
         //TODO("When it will require the permissions , clicking should be disabled at until it responds and to not click more than once at the same time")
         Log.i(TAG, "onScreenTouched: clicked")
     }
 
     private fun requestPermissions(isCalledOnce: Boolean, isUserTouch: Boolean) {
-        if(!isCalledOnce || isUserTouch){
+        if (!isCalledOnce || isUserTouch) {
             this.isCalledOnce = true
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 when {
@@ -99,15 +112,16 @@ class ImagesFragment : Fragment() {
                         requireContext(),
                         Manifest.permission.READ_MEDIA_VIDEO
                     ) == PackageManager.PERMISSION_GRANTED -> {
+
                         Log.i(TAG, "requestPermissions: modern granted")
-//                    imagesAdapter.images = imagesViewModel.getLocalImages()
+
                         updateUI(true)
-                        imagesAdapter.updateImages(imagesViewModel.getLocalImages(
+                        imagesViewModel.getLocalImages(
                             projection,
                             selection,
                             selectionArgs,
                             sortOrder
-                        ))
+                        )
                     }
 
                     else -> {
@@ -123,14 +137,14 @@ class ImagesFragment : Fragment() {
                         Manifest.permission.READ_EXTERNAL_STORAGE
                     ) == PackageManager.PERMISSION_GRANTED -> {
                         Log.i(TAG, "requestPermissions: old granted")
-//                    imagesAdapter.images = imagesViewModel.getLocalImages()
+
                         updateUI(true)
-                        imagesAdapter.updateImages(imagesViewModel.getLocalImages(
+                        imagesViewModel.getLocalImages(
                             projection,
                             selection,
                             selectionArgs,
                             sortOrder
-                        ))
+                        )
                     }
 
                     else -> {
@@ -143,21 +157,24 @@ class ImagesFragment : Fragment() {
 
 
     }
-    private fun updateUI(isGranted: Boolean){
-        if(isGranted){
+
+    private fun updateUI(hideUI: Boolean) {
+        if (hideUI) {
             Log.i(TAG, "updateUI: true")
             _binding?.imagesIcon?.visibility = View.GONE
             _binding?.userMessage?.visibility = View.GONE
+            _binding?.progressBar?.visibility = View.VISIBLE
             _binding?.imagesRecyclerView?.visibility = View.VISIBLE
-        }else{
+        } else {
             Log.i(TAG, "updateUI: false")
-            if(_binding?.imagesIcon?.visibility == View.GONE){
+            if (_binding?.imagesIcon?.visibility == View.GONE) {
                 _binding?.imagesRecyclerView?.visibility = View.GONE
                 _binding?.imagesIcon?.visibility = View.VISIBLE
                 _binding?.userMessage?.visibility = View.VISIBLE
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -46,7 +46,7 @@ class VideosFragment : Fragment() {
         MediaStore.Video.Media.SIZE
     )
     private val selection = "${MediaStore.Video.Media.SIZE} <= ?"
-    private val selectionArgs = arrayOf("100000")
+    private val selectionArgs = arrayOf("10000000") //bytes. 10 MBs
     private val sortOrder = "${MediaStore.Video.Media.DATE_TAKEN} DESC"
 
 

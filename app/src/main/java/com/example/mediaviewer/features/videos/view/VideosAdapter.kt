@@ -28,9 +28,6 @@ class VideosAdapter : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.i(TAG, "onBindViewHolder: ")
         holder.cardVideoBinding.imageView.setImageBitmap(videos[position].thumbnail)
-        holder.cardVideoBinding.playButton.setOnClickListener {
-            Log.i(TAG, "onBindViewHolder: playbutton Clicked!!")
-        }
     }
     override fun getItemCount(): Int {
         return videos.size

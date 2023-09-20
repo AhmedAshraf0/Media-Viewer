@@ -11,7 +11,7 @@ import com.example.mediaviewer.models.Image
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
     private val TAG = "ImagesAdapter"
-    var images = mutableListOf<Image>()
+    var images = listOf<Image>()
 
     inner class ViewHolder(val cardImageBinding: CardImageBinding) :
         RecyclerView.ViewHolder(cardImageBinding.root)
@@ -32,7 +32,7 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
         return images.size
     }
 
-    fun updateImages(images: MutableList<Image>){
+    fun updateImages(images: List<Image>){
         Log.i(TAG, "updateImages: just received images ${images.size}")
         this.images = images
         notifyDataSetChanged()
