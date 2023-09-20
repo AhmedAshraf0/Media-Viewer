@@ -11,7 +11,7 @@ import com.example.mediaviewer.models.Video
 
 class VideosAdapter : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
     private val TAG = "VideosAdapter"
-    var videos = mutableListOf<Video>()
+    var videos = listOf<Video>()
 
     inner class ViewHolder(val cardVideoBinding: CardVideoBinding) :
         RecyclerView.ViewHolder(cardVideoBinding.root)
@@ -33,7 +33,7 @@ class VideosAdapter : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
         return videos.size
     }
 
-    fun updateVideos(videos: MutableList<Video>){
+    fun updateVideos(videos: List<Video>){
         Log.i(TAG, "updateVideos: just received videos ${videos.size}")
         this.videos = videos
         notifyDataSetChanged()

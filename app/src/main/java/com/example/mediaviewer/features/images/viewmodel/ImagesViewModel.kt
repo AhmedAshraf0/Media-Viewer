@@ -23,16 +23,14 @@ class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
     private var _imagesList = MutableLiveData<List<Image>>()
     var imagesList : LiveData<List<Image>> = _imagesList
 
-    //TODO("ADD COROUTINES")
     fun getLocalImages(
         projection: Array<String>,
         selection: String,
         selectionArgs: Array<String>,
         sortOrder: String
     ){
-        var ctr = 0
-
-        val testList = mutableListOf<Image>()
+        Log.i(TAG, "getLocalImages: Starting...")
+        val images = mutableListOf<Image>()
 
         viewModelScope.launch(Dispatchers.IO){
             applicationContext.contentResolver.query(
@@ -50,7 +48,6 @@ class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
                 val sizeColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)
 
                 while (it.moveToNext()) {
-                    ctr++
                     // Get values of columns for a given image.
                     val id = it.getLong(idColumn)
                     val name = it.getString(nameColumn)
@@ -61,13 +58,13 @@ class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
                     val contentUri: Uri =
                         ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
 
-                    testList += Image(contentUri, name, title, date, size)
+                    images += Image(contentUri, name, title, date, size)
                 }
-                Log.i(TAG, "After MediaStore While loop: ctr = $ctr")
+                Log.i(TAG, "getLocalImages: Finished")
             }
 
             withContext(Dispatchers.Main){
-                _imagesList.value = testList
+                _imagesList.value = images
             }
         }
     }

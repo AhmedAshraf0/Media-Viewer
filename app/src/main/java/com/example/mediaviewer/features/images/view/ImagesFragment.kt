@@ -29,6 +29,7 @@ class ImagesFragment : Fragment() {
     private lateinit var imagesAdapter: ImagesAdapter
 
     private var isCalledOnce = false
+    private var isFromVideosFragment = false
 
     //query requirements
     private val projection = arrayOf(
@@ -82,7 +83,11 @@ class ImagesFragment : Fragment() {
 
         imagesViewModel.imagesList.observe(viewLifecycleOwner){
             Log.i(TAG, "received from livedata: ")
-            imagesAdapter.updateImages(it)
+            if(isFromVideosFragment){
+                isFromVideosFragment = false // switch off
+            }else{
+                imagesAdapter.updateImages(it)
+            }
             _binding?.progressBar?.visibility = View.GONE
         }
 
@@ -91,12 +96,18 @@ class ImagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestPermissions(isCalledOnce, false)
+        if(imagesViewModel.imagesList.value.isNullOrEmpty()){
+            requestPermissions(isCalledOnce, false)
+        }else{
+            isFromVideosFragment = true //switch on
+            updateUI(true)
+            imagesAdapter.updateImages(imagesViewModel.imagesList.value!!)
+        }
     }
 
     fun onScreenTouched(view: View) {
-        requestPermissions(isCalledOnce, true)
-        //TODO("When it will require the permissions , clicking should be disabled at until it responds and to not click more than once at the same time")
+        if(_binding!!.userMessage.visibility == View.VISIBLE)
+            requestPermissions(isCalledOnce, true)
         Log.i(TAG, "onScreenTouched: clicked")
     }
 

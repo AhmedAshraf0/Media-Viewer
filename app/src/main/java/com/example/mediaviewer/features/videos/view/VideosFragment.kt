@@ -28,6 +28,7 @@ class VideosFragment : Fragment() {
     private lateinit var videosAdapter: VideosAdapter
 
     private var isCalledOnce = false
+    private var isFromVideosFragment = false
 
     //query requirements
     private val collection =
@@ -56,14 +57,13 @@ class VideosFragment : Fragment() {
         if (isGranted) {
             Log.i(TAG, "requestPermissionLauncher: granted");
             updateUI(true)
-            videosAdapter.updateVideos(videosViewModel.getLocalVideos(
+            videosViewModel.getLocalVideos(
                 collection,
                 projection,
                 selection,
                 selectionArgs,
                 sortOrder
-            ))
-//            imagesAdapter.images = imagesViewModel.getLocalImages()
+            )
         } else {
             Log.i(TAG, "requestPermissionLauncher: not granted");
             updateUI(false)
@@ -85,14 +85,31 @@ class VideosFragment : Fragment() {
         videosAdapter = VideosAdapter()
         _binding?.videosRecyclerView?.adapter = videosAdapter
 
+        videosViewModel.videosList.observe(viewLifecycleOwner){
+            Log.i(TAG, "received from livedata: ")
+            if(isFromVideosFragment){
+                isFromVideosFragment = false // switch off
+            }else{
+                videosAdapter.updateVideos(it)
+            }
+            _binding?.progressBar?.visibility = View.GONE
+        }
+
         return _binding!!.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestPermissions(isCalledOnce, false)
+        if(videosViewModel.videosList.value.isNullOrEmpty()){
+            requestPermissions(isCalledOnce, false)
+        }else{
+            isFromVideosFragment = true //switch on
+            updateUI(true)
+            videosAdapter.updateVideos(videosViewModel.videosList.value!!)
+        }
     }
     fun onScreenTouched(view: View){
-        requestPermissions(isCalledOnce, true)
+        if(_binding!!.userMessage.visibility == View.VISIBLE)
+            requestPermissions(isCalledOnce, true)
         Log.i(TAG, "onScreenTouched: clicked")
     }
 
@@ -110,14 +127,13 @@ class VideosFragment : Fragment() {
                     ) == PackageManager.PERMISSION_GRANTED -> {
                         Log.i(TAG, "requestPermissions: modern granted")
                         updateUI(true)
-                        videosAdapter.updateVideos(videosViewModel.getLocalVideos(
+                        videosViewModel.getLocalVideos(
                             collection,
                             projection,
                             selection,
                             selectionArgs,
                             sortOrder
-                        ))
-                    }
+                        )                    }
 
                     else -> {
                         Log.i(TAG, "requestPermissions: modern request")
@@ -133,14 +149,13 @@ class VideosFragment : Fragment() {
                     ) == PackageManager.PERMISSION_GRANTED -> {
                         Log.i(TAG, "requestPermissions: old granted")
                         updateUI(true)
-                        videosAdapter.updateVideos(videosViewModel.getLocalVideos(
+                        videosViewModel.getLocalVideos(
                             collection,
                             projection,
                             selection,
                             selectionArgs,
                             sortOrder
-                        ))
-                    }
+                        )                    }
 
                     else -> {
                         Log.i(TAG, "requestPermissions: old request permissions")
@@ -153,11 +168,12 @@ class VideosFragment : Fragment() {
 
     }
 
-    private fun updateUI(isGranted: Boolean){
-        if(isGranted){
+    private fun updateUI(hideUI: Boolean){
+        if(hideUI){
             Log.i(TAG, "updateUI: true")
             _binding?.imagesIcon?.visibility = View.GONE
             _binding?.userMessage?.visibility = View.GONE
+            _binding?.progressBar?.visibility = View.VISIBLE
             _binding?.videosRecyclerView?.visibility = View.VISIBLE
         }else{
             Log.i(TAG, "updateUI: false")
