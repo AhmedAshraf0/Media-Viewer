@@ -23,4 +23,4 @@ The Gallery App is a simple Android application that allows users to browse and 
 
 
 ## Home Screen when permission granted:
-![alt text]([https://drive.google.com/uc?export=view&id=1MftQ_vt6SYMOfGxlG2njUmXn9Tawz7JL))
+<a href="https://drive.google.com/uc?export=view&id=1MftQ_vt6SYMOfGxlG2njUmXn9Tawz7JL"><img src="https://drive.google.com/uc?export=view&id=1MftQ_vt6SYMOfGxlG2njUmXn9Tawz7JL" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
