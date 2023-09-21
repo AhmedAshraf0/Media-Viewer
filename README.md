@@ -41,4 +41,5 @@
 <p>The <b>main concept</b> to not request permissions everytime the user opens the app. User can use the app regulary and can see photos or videos with a click on the screen. That's when i ask the user for the permissions again</p>
 <p><b>When should we get the data?</b></p>
 <p>I will get data from MediaStore only when the user touch the screen (when permission not granted ) or if the list is empty (i don't load data from mediastore again ) and that happens when user grant permissions on the videos screen but when getting back to images screen. I check on permissions if granted and if the list is empty so i can get the data from mediastore</p>
-<p><b>isCalledOnce</b> it handled using sharedpreferences</p>
+<p><b>isCalledOnce</b></p>
+<p>it handled using sharedpreferences</p>
