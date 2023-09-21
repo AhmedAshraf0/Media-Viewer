@@ -20,7 +20,7 @@
             android:id="@+id/imagesIcon"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="120dp"
             android:src="@mipmap/add_images"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

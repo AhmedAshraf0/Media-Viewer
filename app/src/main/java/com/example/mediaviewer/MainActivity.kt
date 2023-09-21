@@ -1,19 +1,9 @@
 package com.example.mediaviewer
 
-import android.Manifest
-import android.content.ContentUris
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
+
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
