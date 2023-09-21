@@ -22,7 +22,7 @@ class ImagesAdapter : ListAdapter<Image,ImagesAdapter.ViewHolder>(DiffUtilImages
 
         return ViewHolder(binding)
     }
-    
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.i(TAG, "onBindViewHolder: ")
         holder.cardImageBinding.imageView.setImageURI(getItem(position).uri)
