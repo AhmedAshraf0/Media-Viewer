@@ -25,8 +25,8 @@ class ImagesViewModel(private val applicationContext: Context) : ViewModel() {
 
     fun getLocalImages(
         projection: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
+        selection: String?,
+        selectionArgs: Array<String>?,
         sortOrder: String
     ){
         Log.i(TAG, "getLocalImages: Starting...")

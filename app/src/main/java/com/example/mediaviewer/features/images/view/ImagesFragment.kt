@@ -44,8 +44,10 @@ class ImagesFragment : Fragment() {
         MediaStore.Images.Media.DATE_TAKEN,
         MediaStore.Images.Media.SIZE
     )
-    private val selection = "${MediaStore.Images.Media.SIZE} >= ?"
-    private val selectionArgs = arrayOf("1")
+    /*private val selection = "${MediaStore.Images.Media.SIZE} >= ?"
+    private val selectionArgs = arrayOf("1")*/
+    private val selection = null
+    private val selectionArgs = null
     private val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
 
 
@@ -165,64 +167,6 @@ class ImagesFragment : Fragment() {
                 requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             }
         }
-
-        /*if (isCalledOnce || isUserTouch) {
-            sharedPreferences!!.saveBoolean("isFirstTime",false)
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                when {
-                    ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_MEDIA_IMAGES
-                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_MEDIA_VIDEO
-                    ) == PackageManager.PERMISSION_GRANTED -> {
-
-                        Log.i(TAG, "requestPermissions: modern granted")
-
-                        updateUI(true)
-                        if(imagesViewModel.imagesList.value.isNullOrEmpty())
-                            imagesViewModel.getLocalImages(
-                                projection,
-                                selection,
-                                selectionArgs,
-                                sortOrder
-                            )
-                    }
-
-                    else -> {
-                        Log.i(TAG, "requestPermissions: modern request")
-                        requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                        requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VIDEO)
-                    }
-                }
-            } else {
-                when {
-                    ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ) == PackageManager.PERMISSION_GRANTED -> {
-                        Log.i(TAG, "requestPermissions: old granted")
-
-                        updateUI(true)
-                        if(imagesViewModel.imagesList.value.isNullOrEmpty())
-                            imagesViewModel.getLocalImages(
-                                projection,
-                                selection,
-                                selectionArgs,
-                                sortOrder
-                            )
-                    }
-
-                    else -> {
-                        Log.i(TAG, "requestPermissions: old request permissions")
-                        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }
-                }
-            }
-        }*/
-
-
     }
 
     private fun updateUI(hideUI: Boolean) {

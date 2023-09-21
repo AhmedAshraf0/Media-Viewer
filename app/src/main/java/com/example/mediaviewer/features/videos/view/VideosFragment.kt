@@ -49,8 +49,10 @@ class VideosFragment : Fragment() {
         MediaStore.Video.Media.DATE_TAKEN,
         MediaStore.Video.Media.SIZE
     )
-    private val selection = "${MediaStore.Video.Media.SIZE} <= ?"
-    private val selectionArgs = arrayOf("10000000") //bytes. 10 MBs
+    /*private val selection = "${MediaStore.Video.Media.SIZE} <= ?"
+    private val selectionArgs = arrayOf("10000000") //bytes. 10 MBs*/
+    private val selection = null
+    private val selectionArgs = null
     private val sortOrder = "${MediaStore.Video.Media.DATE_TAKEN} DESC"
 
 
@@ -97,7 +99,7 @@ class VideosFragment : Fragment() {
         _binding?.videosRecyclerView?.adapter = videosAdapter
 
         videosViewModel.videosList.observe(viewLifecycleOwner) {
-            Log.i(TAG, "received from livedata: ")
+            Log.i(TAG, "received from livedata: ${it.size}")
             if (videosAdapter.itemCount == 0)
                 videosAdapter.submitList(it)
             _binding?.progressBar?.visibility = View.GONE
@@ -170,61 +172,6 @@ class VideosFragment : Fragment() {
                 requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             }
         }
-        /*if (isCalledOnce || isUserTouch) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                when {
-                    ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_MEDIA_IMAGES
-                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_MEDIA_VIDEO
-                    ) == PackageManager.PERMISSION_GRANTED -> {
-                        Log.i(TAG, "requestPermissions: modern granted")
-                        updateUI(true)
-                        if(videosViewModel.videosList.value.isNullOrEmpty())
-                            videosViewModel.getLocalVideos(
-                                collection,
-                                projection,
-                                selection,
-                                selectionArgs,
-                                sortOrder
-                            )
-                    }
-
-                    else -> {
-                        Log.i(TAG, "requestPermissions: modern request")
-                        requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                        requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_VIDEO)
-                    }
-                }
-            } else {
-                when {
-                    ContextCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ) == PackageManager.PERMISSION_GRANTED -> {
-                        Log.i(TAG, "requestPermissions: old granted")
-                        updateUI(true)
-                        if(videosViewModel.videosList.value.isNullOrEmpty())
-                            videosViewModel.getLocalVideos(
-                                collection,
-                                projection,
-                                selection,
-                                selectionArgs,
-                                sortOrder
-                            )
-                    }
-
-                    else -> {
-                        Log.i(TAG, "requestPermissions: old request permissions")
-                        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }
-                }
-            }
-        }*/
-
-
     }
 
     private fun updateUI(hideUI: Boolean) {

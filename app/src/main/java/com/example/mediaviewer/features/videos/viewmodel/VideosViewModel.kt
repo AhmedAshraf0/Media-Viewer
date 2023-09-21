@@ -11,7 +11,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mediaviewer.models.Image
 import com.example.mediaviewer.models.Video
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,8 +24,8 @@ class VideosViewModel(private val applicationContext: Context) : ViewModel() {
     fun getLocalVideos(
         collection: Uri,
         projection: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
+        selection: String?,
+        selectionArgs: Array<String>?,
         sortOrder: String
     ){
         Log.i(TAG, "getLocalVideos: Starting...")

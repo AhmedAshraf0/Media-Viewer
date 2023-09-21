@@ -15,8 +15,6 @@ import com.example.mediaviewer.models.Video
 
 class VideosAdapter : ListAdapter<Video, VideosAdapter.ViewHolder>(DiffUtilVideos()) {
     private val TAG = "VideosAdapter"
-//    var videos = listOf<Video>()
-
     inner class ViewHolder(val cardVideoBinding: CardVideoBinding) :
         RecyclerView.ViewHolder(cardVideoBinding.root)
 
@@ -33,11 +31,5 @@ class VideosAdapter : ListAdapter<Video, VideosAdapter.ViewHolder>(DiffUtilVideo
         Log.i(TAG, "onBindViewHolder: ")
         holder.cardVideoBinding.imageView.setImageBitmap(getItem(position).thumbnail)
     }
-
-    /*fun updateVideos(videos: List<Video>){
-        Log.i(TAG, "updateVideos: just received videos ${videos.size}")
-        this.videos = videos
-        notifyDataSetChanged()
-    }*/
 
 }

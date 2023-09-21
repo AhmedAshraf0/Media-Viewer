@@ -12,7 +12,6 @@ import com.example.mediaviewer.models.Image
 
 class ImagesAdapter : ListAdapter<Image,ImagesAdapter.ViewHolder>(DiffUtilImages()) {
     private val TAG = "ImagesAdapter"
-//    var images = listOf<Image>()
 
     inner class ViewHolder(val cardImageBinding: CardImageBinding) :
         RecyclerView.ViewHolder(cardImageBinding.root)
@@ -23,17 +22,9 @@ class ImagesAdapter : ListAdapter<Image,ImagesAdapter.ViewHolder>(DiffUtilImages
 
         return ViewHolder(binding)
     }
-
-
+    
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.i(TAG, "onBindViewHolder: ")
         holder.cardImageBinding.imageView.setImageURI(getItem(position).uri)
     }
-
-    /*fun updateImages(images: List<Image>){
-        Log.i(TAG, "updateImages: just received images ${images.size}")
-        this.images = images
-        notifyDataSetChanged()
-    }*/
-
 }
