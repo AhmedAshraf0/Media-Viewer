@@ -1,6 +1,6 @@
 # MediaViewer App
 <a href="https://drive.google.com/uc?export=view&id=1SCtccVf0J7BC5kw1OZZ_LZOBmVBsHKIq"><img src="https://drive.google.com/uc?export=view&id=1SCtccVf0J7BC5kw1OZZ_LZOBmVBsHKIq" style="width: 250px; height: 250px max-width: 50%; height: auto"/>
-<p>The MediaViewer App is a simple Android application that allows users to browse and view photos and thumbnails of videos stored on their device.</p>
+<p>MediaViewer App is a simple Android application that allows users to browse and view photos and thumbnails of videos stored on their device.</p>
 
 ## Features
 
