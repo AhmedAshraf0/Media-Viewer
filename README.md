@@ -38,3 +38,6 @@
 
 ## FlowChart describing the logic when dealing with permissions:
 <a href="https://drive.google.com/uc?export=view&id=1QnDAbwvzlp-cXYq6NxojmukoV47mhlHl"><img src="https://drive.google.com/uc?export=view&id=1QnDAbwvzlp-cXYq6NxojmukoV47mhlHl" style="width: 100%; height: 550px;"/>
+<p>The main concept to not request permissions everytime the user opens the app. User can use the app regulary and can see photos or videos with a click on the screen. That's when i ask the user for the permissions again</p>
+<p>I will get data from MediaStore only when the user touch the screen (when permission not granted ) or if the list is empty (i don't load data from mediastore again ) and that happens when user grant permissions on the videos screen but when getting back to images screen. I check on permissions if granted and if the list is empty so i can get the data from mediastore</p>
+<p>isCalledOnce it handled using sharedpreferences</p>
