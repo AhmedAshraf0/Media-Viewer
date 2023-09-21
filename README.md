@@ -31,5 +31,5 @@
 <a href="https://drive.google.com/uc?export=view&id=1MwswFK6pGHMMHTePtQtaIXU2FQxM4Gal"><img src="https://drive.google.com/uc?export=view&id=1MwswFK6pGHMMHTePtQtaIXU2FQxM4Gal" style="width: 250px; height: 250px max-width: 50%; height: auto" />
 
 #Landscape
-<a href="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy"><img src="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy" style="width: 450px; height: 350px;/>
-<a href="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ"><img src="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ" style="width: 450px; height: 350px;/>
+<a href="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy"><img src="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy" style="width: 450px; height: 350px;"/>
+<a href="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ"><img src="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ" style="width: 450px; height: 350px;"/>
