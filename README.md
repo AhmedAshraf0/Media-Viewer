@@ -25,13 +25,16 @@
 
 ## Home Screen when permission granted:
 
-#Portrait
+# Portrait
 <div></div>
 <a href="https://drive.google.com/uc?export=view&id=1MftQ_vt6SYMOfGxlG2njUmXn9Tawz7JL"><img src="https://drive.google.com/uc?export=view&id=1MftQ_vt6SYMOfGxlG2njUmXn9Tawz7JL" style="width: 250px; height: 250px max-width: 50%; height: auto" />
 <a href="https://drive.google.com/uc?export=view&id=1MwswFK6pGHMMHTePtQtaIXU2FQxM4Gal"><img src="https://drive.google.com/uc?export=view&id=1MwswFK6pGHMMHTePtQtaIXU2FQxM4Gal" style="width: 250px; height: 250px max-width: 50%; height: auto" />
 
-#Landscape
+# Landscape
 <div></div>
 <a href="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy"><img src="https://drive.google.com/uc?export=view&id=1N71ChMiwycMOxmjnoE7RJgsmraE7H1uy" style="width: 450px; height: 250px;"/>
 <br>
 <a href="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ"><img src="https://drive.google.com/uc?export=view&id=1N7RZvGZKwTVCfk3V-ZV7p7fth0iktskQ" style="width: 450px; height: 250px;"/>
+
+## FlowChart describing the logic when dealing with permissions:
+<a href="https://drive.google.com/uc?export=view&id=1QnDAbwvzlp-cXYq6NxojmukoV47mhlHl"><img src="https://drive.google.com/uc?export=view&id=1QnDAbwvzlp-cXYq6NxojmukoV47mhlHl" style="width: 100%; height: 550px;"/>
