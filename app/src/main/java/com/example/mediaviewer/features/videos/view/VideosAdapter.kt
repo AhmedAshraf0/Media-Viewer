@@ -4,14 +4,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mediaviewer.R
 import com.example.mediaviewer.databinding.CardVideoBinding
+import com.example.mediaviewer.features.images.view.DiffUtilImages
+import com.example.mediaviewer.features.images.view.ImagesAdapter
+import com.example.mediaviewer.models.Image
 import com.example.mediaviewer.models.Video
 
-class VideosAdapter : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
+class VideosAdapter : ListAdapter<Video, VideosAdapter.ViewHolder>(DiffUtilVideos()) {
     private val TAG = "VideosAdapter"
-    var videos = listOf<Video>()
+//    var videos = listOf<Video>()
 
     inner class ViewHolder(val cardVideoBinding: CardVideoBinding) :
         RecyclerView.ViewHolder(cardVideoBinding.root)
@@ -27,16 +31,13 @@ class VideosAdapter : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.i(TAG, "onBindViewHolder: ")
-        holder.cardVideoBinding.imageView.setImageBitmap(videos[position].thumbnail)
-    }
-    override fun getItemCount(): Int {
-        return videos.size
+        holder.cardVideoBinding.imageView.setImageBitmap(getItem(position).thumbnail)
     }
 
-    fun updateVideos(videos: List<Video>){
+    /*fun updateVideos(videos: List<Video>){
         Log.i(TAG, "updateVideos: just received videos ${videos.size}")
         this.videos = videos
         notifyDataSetChanged()
-    }
+    }*/
 
 }

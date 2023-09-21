@@ -4,14 +4,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mediaviewer.R
 import com.example.mediaviewer.databinding.CardImageBinding
 import com.example.mediaviewer.models.Image
 
-class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter : ListAdapter<Image,ImagesAdapter.ViewHolder>(DiffUtilImages()) {
     private val TAG = "ImagesAdapter"
-    var images = listOf<Image>()
+//    var images = listOf<Image>()
 
     inner class ViewHolder(val cardImageBinding: CardImageBinding) :
         RecyclerView.ViewHolder(cardImageBinding.root)
@@ -26,16 +27,13 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.i(TAG, "onBindViewHolder: ")
-        holder.cardImageBinding.imageView.setImageURI(images[position].uri)
-    }
-    override fun getItemCount(): Int {
-        return images.size
+        holder.cardImageBinding.imageView.setImageURI(getItem(position).uri)
     }
 
-    fun updateImages(images: List<Image>){
+    /*fun updateImages(images: List<Image>){
         Log.i(TAG, "updateImages: just received images ${images.size}")
         this.images = images
         notifyDataSetChanged()
-    }
+    }*/
 
 }
